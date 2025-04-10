@@ -73,6 +73,7 @@ import ChatFolderModal from '../ChatFolderModal.async';
 import MuteChatModal from '../MuteChatModal.async';
 import ChatBadge from './ChatBadge';
 import ChatCallStatus from './ChatCallStatus';
+import MessageCounter from './MessageCounter';
 
 import './Chat.scss';
 
@@ -352,6 +353,10 @@ const Chat: FC<OwnProps & StateProps> = ({
           {!isAvatarOnlineShown && Boolean(chat.subscriptionUntil) && (
             <StarIcon type="gold" className="avatar-badge avatar-subscription" size="adaptive" />
           )}
+          {(chat.type === 'chatTypeSuperGroup' || chat.type === 'chatTypePrivate' || chat.type === 'chatTypeBasicGroup')
+            && (
+              <MessageCounter chat={chat} user={user} className="MessageCounter" />
+            )}
           <ChatBadge
             chat={chat}
             isMuted={isMuted}
